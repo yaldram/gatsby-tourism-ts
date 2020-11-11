@@ -15,7 +15,8 @@
     "allowJs": true
   },
   "include": [
-    "src/**/*"
+    "src",
+    "typings.d.ts"
   ],
   "exclude": [
     "node_modules",
