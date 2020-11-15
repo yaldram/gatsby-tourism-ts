@@ -4,8 +4,6 @@ require("dotenv").config({
 
 module.exports = {
   plugins: [
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -20,8 +18,11 @@ module.exports = {
       }
     },
     `gatsby-plugin-typescript`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     `gatsby-plugin-transition-link`,
     `gatsby-background-image`,
+    `gatsby-transformer-remark`
   ],
 }
 

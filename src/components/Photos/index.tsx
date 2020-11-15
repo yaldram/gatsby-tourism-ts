@@ -45,6 +45,7 @@ type Photos = {
     }>
   }
 }
+
 export const PhotoList = () => {
   const { photos } = useStaticQuery<Photos>(getPhotos);
 
