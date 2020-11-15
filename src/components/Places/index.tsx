@@ -11,12 +11,9 @@ const getPlaces = graphql`
     places: allContentfulGatsbyTourism {
       edges {
         node {
-          name
-          timeRequired
-          slug
-          timings
           contentful_id
-          entryFees
+          name
+          slug
           images {
             fluid {
               ...GatsbyContentfulFluid
@@ -32,16 +29,12 @@ type Places = {
   places: {
     edges: Array<{
       node: {
-        name: string;
-        timeRequired: string;
-        slug: string;
-        timings: string;
         contentful_id: string;
-        entryFees: string;
+        name: string;
+        slug: string;
         images: Array<{
           fluid: FluidObject[] | FluidObject
         }>
-
       }
     }>
   }
