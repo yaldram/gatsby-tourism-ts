@@ -12,6 +12,15 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+
+      photos: allContentfulPhotos {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+
     }
   `)
 
@@ -22,6 +31,16 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: node.slug,
       },
+    })
+  })
+
+  data.photos.edges.forEach(({ node }) => {
+    createPage({
+      path: `photos/${node.slug}`,
+      component: path.resolve("./src/templates/photo-template.js"),
+      context: {
+        slug: node.slug
+      }
     })
   })
 
