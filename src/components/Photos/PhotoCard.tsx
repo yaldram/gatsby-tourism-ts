@@ -1,8 +1,6 @@
 import React from "react"
-import Image from "gatsby-image"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-import styles from "./photos.module.css"
+import { Card } from "../Card";
 
 interface IPhotoCard {
   readonly photo: GatsbyTypes.allPhotosQuery["photos"]["edges"][number]["node"]
@@ -22,16 +20,15 @@ export const PhotoCard = ({ photo }: IPhotoCard) => {
   }
 
   return (
-    <article className={styles.place}>
-      <div className={styles.imgContainer}>
-        <Image fluid={mainImage.fluid} className={styles.img} alt="single photo" />
-        <AniLink fade className={styles.link} to={`/photos/${slug}`}>
-          open
-        </AniLink>
-      </div>
-      <div className={styles.footer}>
-        <h3>{name}</h3>
-      </div>
-    </article>
+     <Card >
+     <Card.Image
+       image={mainImage.fluid}
+       slug={`/photos/${slug}`}
+       title="Open"
+     />
+     <Card.Footer>
+       <h4>{name}</h4>
+     </Card.Footer>
+   </Card>
   )
 }

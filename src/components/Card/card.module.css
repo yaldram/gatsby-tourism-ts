@@ -1,8 +1,8 @@
-.place {
+.card {
   box-shadow: var(--lightShadow);
   transition: var(--mainTransition);
 }
-.place:hover {
+.card:hover {
   box-shadow: var(--darkShadow);
 }
 
@@ -48,30 +48,4 @@
 .footer h3 {
   text-transform: capitalize;
   margin-bottom: 0;
-}
-.info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  text-transform: uppercase;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-.info h6,
-.info h4 {
-  margin-bottom: 0;
-}
-.country {
-  text-transform: capitalize;
-  color: var(--primaryColor);
-  display: flex;
-  align-items: center;
-}
-.icon {
-  margin-right: 0.4rem;
-}
-.details {
-  color: var(--darkGrey);
-  text-transform: uppercase;
-  text-align: right;
 }
