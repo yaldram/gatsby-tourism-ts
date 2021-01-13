@@ -1,21 +1,21 @@
 import React from "react"
-import Image, { FluidObject } from "gatsby-image"
+import Image from "gatsby-image"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import styles from "./blog-card.module.css"
 
 interface IBlogCardProps {
-  blog: {
-    slug: string;
-    title: string;
-    image: { fluid: FluidObject };
-    published: string
-  }
+  readonly blog: GatsbyTypes.allPostsQuery["posts"]["edges"][number]["node"]
 }
+
 
 export const BlogCard = ({ blog }: IBlogCardProps) => {
 
   const { slug, title, image, published } = blog
+
+  if (!image || !image.fluid) {
+    return null
+  }
 
   return (
     <article className={styles.blog}>

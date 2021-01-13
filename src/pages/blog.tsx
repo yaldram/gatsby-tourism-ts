@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { IFluidObject } from "gatsby-background-image"
 
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
 import { BlogList } from "../components/Blog"
 
 export const query = graphql`
-  query {
+  query blogImage {
     blogBcg: file(relativePath: { eq: "blogBcg.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 4160) {
@@ -18,20 +17,15 @@ export const query = graphql`
   }
 `
 
-interface IBlogProps {
-  data: {
-    blogBcg: {
-      childImageSharp: {
-        fluid: IFluidObject | IFluidObject[] | (string | IFluidObject)[]
-      }
-    }
-  }
-}
+export default function Blog({ data: { blogBcg } }: { data: GatsbyTypes.blogImageQuery }) {
 
-export default function Blog({ data }: IBlogProps) {
+  if (!blogBcg?.childImageSharp?.fluid) {
+    throw new Error("Image not found under pages/blog.tsx")
+  }
+
   return (
     <Layout>
-      <StyledHeroComponent img={data.blogBcg.childImageSharp.fluid} />
+      <StyledHeroComponent img={blogBcg.childImageSharp.fluid} />
       <BlogList />
     </Layout>
   )

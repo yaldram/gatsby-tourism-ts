@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
-import { IFluidObject } from "gatsby-background-image"
 
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
@@ -11,7 +10,7 @@ import { Banner } from "../components/Banner"
 import { FeaturedPlaces } from "../components/Home/FeaturedPlaces"
 
 export const query = graphql`
-  query {
+  query homeImage {
     defaultBcg: file(relativePath: { eq: "defaultBcg.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 4160) {
@@ -21,20 +20,16 @@ export const query = graphql`
     }
   }
 `
-interface IHomeProps {
-  data: {
-    defaultBcg: {
-      childImageSharp: {
-        fluid: IFluidObject | IFluidObject[] | (string | IFluidObject)[]
-      }
-    }
-  }
-}
 
-export default function ({ data }: IHomeProps) {
+export default function ({ data: { defaultBcg } }: { data: GatsbyTypes.homeImageQuery }) {
+
+  if (!defaultBcg?.childImageSharp?.fluid) {
+    throw new Error("Image not found under pages/index.tsx")
+  }
+
   return (
     <Layout>
-      <StyledHeroComponent home img={data.defaultBcg.childImageSharp.fluid}>
+      <StyledHeroComponent home img={defaultBcg.childImageSharp.fluid}>
         <Banner
           title="Awesome Hampi"
           info="Come and explore, the city of ruins, which is a UNESCO World Heritage Site."

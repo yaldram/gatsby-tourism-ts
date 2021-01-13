@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { IFluidObject } from "gatsby-background-image"
 
 import { ContactForm } from "../components/ContactForm"
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
 
 export const query = graphql`
-  query {
+  query contactImage {
     connectBcg: file(relativePath: { eq: "connectBcg.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 4160) {
@@ -18,20 +17,16 @@ export const query = graphql`
   }
 `
 
-interface IContactProps {
-  data: {
-    connectBcg: {
-      childImageSharp: {
-        fluid: IFluidObject | IFluidObject[] | (string | IFluidObject)[]
-      }
-    }
-  }
-}
 
-export default function ({ data }: IContactProps) {
+export default function ({ data: { connectBcg } }: { data: GatsbyTypes.contactImageQuery }) {
+
+  if (!connectBcg?.childImageSharp?.fluid) {
+    throw new Error("Image not found under pages/contact.tsx")
+  }
+
   return (
     <Layout>
-      <StyledHeroComponent img={data.connectBcg.childImageSharp.fluid} />
+      <StyledHeroComponent img={connectBcg.childImageSharp.fluid} />
       <ContactForm />
     </Layout>
   )

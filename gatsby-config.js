@@ -17,12 +17,24 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       }
     },
+    {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          'src/__generated__/gatsby-introspection.json': true,
+          './src/__generated__/gatsby-schema.graphql': true,
+        },
+        emitPluginDocuments: {
+          'src/__generated__/gatsby-plugin-documents.graphql': true,
+        },
+      }
+    },
     `gatsby-plugin-typescript`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-transition-link`,
     `gatsby-background-image`,
-    `gatsby-transformer-remark`
+    `gatsby-transformer-remark`,
   ],
 }
 

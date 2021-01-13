@@ -1,7 +1,6 @@
 import React from "react"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { useStaticQuery, graphql } from "gatsby"
-import { FluidObject } from "gatsby-image"
 
 import { Title } from "../Title"
 import { Place } from "../Places/Place"
@@ -9,7 +8,7 @@ import { Place } from "../Places/Place"
 import styles from "../items.module.css"
 
 const getFeaturedPlaces = graphql`
-  query {
+  query featuredPlaces {
     featuredPlaces: allContentfulGatsbyTourism(
       filter: { featured: { eq: true } }
     ) {
@@ -33,26 +32,9 @@ const getFeaturedPlaces = graphql`
   }
 `
 
-type FeaturedPlaces = {
-  featuredPlaces: {
-    edges: Array<{
-      node: {
-        contentful_id: string;
-        name: string;
-        slug: string;
-        timeRequired: string;
-        timings: string;
-        entryFees: string;
-        images: Array<{
-          fluid: FluidObject[] | FluidObject
-        }>
-      }
-    }>
-  }
-}
 
 export function FeaturedPlaces() {
-  const { featuredPlaces: { edges: places } } = useStaticQuery<FeaturedPlaces>(getFeaturedPlaces)
+  const { featuredPlaces: { edges: places } } = useStaticQuery<GatsbyTypes.featuredPlacesQuery>(getFeaturedPlaces)
 
   return (
     <section className={styles.places}>

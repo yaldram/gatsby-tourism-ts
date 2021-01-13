@@ -4,21 +4,37 @@ import Image from "gatsby-image"
 import { graphql } from "gatsby"
 
 import { Layout } from "../components/Layout"
-
 import styles from "./single-blog.module.css"
 
-const Photos = ({ data }) => {
-  const { name, description: { description }, images } = data.photo
+interface IPhotoTemplateProps {
+  data: GatsbyTypes.getPhotoQuery
+}
 
-  let mainImage = images[1].fluid
+export default function ({ data: { photo } }: IPhotoTemplateProps) {
+
+  if (!photo) {
+    throw new Error("Photo Not Found for Photo Template")
+  }
+
+  const { name, description, images } = photo
+
+  if (!images) {
+    throw new Error("Image Not Found for Photo Template")
+  }
+
+  const [mainImage] = images
+
+  if (!mainImage?.fluid) {
+    throw new Error("Image Not Found for Photo Template")
+  }
 
   return (
     <Layout>
       <section className={styles.blog}>
         <h1 className={styles.center}>{name}</h1>
         <div className={styles.center}>
-          <Image fluid={mainImage} alt="single image" />
-          <h4>{description}</h4>
+          <Image fluid={mainImage.fluid} alt="single image" />
+          <h4>{description?.description}</h4>
           <AniLink fade to="/photos" className="btn-primary">
             all photos
           </AniLink>
@@ -45,5 +61,3 @@ export const query = graphql`
   }
 
 `;
-
-export default Photos;

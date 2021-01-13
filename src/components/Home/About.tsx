@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Image, { FluidObject } from "gatsby-image"
+import Image from "gatsby-image"
 
 import { Title } from "../Title"
 
@@ -11,23 +11,20 @@ const getAboutImgQuery = graphql`
     aboutImage: file(relativePath: { eq: "defaultBcg.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid_tracedSVG
+          ...GatsbyImageSharpFluid
         }
       }
     }
   }
 `
 
-type About = {
-  aboutImage: {
-    childImageSharp: {
-      fluid: FluidObject
-    }
-  }
-}
-
 export function About() {
-  const { aboutImage } = useStaticQuery<About>(getAboutImgQuery)
+  const { aboutImage } = useStaticQuery<GatsbyTypes.aboutImageQuery>(getAboutImgQuery)
+
+  if (!aboutImage?.childImageSharp?.fluid) {
+    throw new Error("Image not found under components/Home/About.tsx")
+  }
+
   return (
     <section className={styles.about}>
       <Title title="about" subtitle="hampi" />

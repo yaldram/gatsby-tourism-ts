@@ -35,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
   data.places.edges.forEach(({ node }) => {
     createPage({
       path: `places/${node.slug}`,
-      component: path.resolve("./src/templates/place-template.js"),
+      component: path.resolve("./src/templates/place-template.tsx"),
       context: {
         slug: node.slug,
       },
@@ -45,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
   data.photos.edges.forEach(({ node }) => {
     createPage({
       path: `photos/${node.slug}`,
-      component: path.resolve("./src/templates/photo-template.js"),
+      component: path.resolve("./src/templates/photo-template.tsx"),
       context: {
         slug: node.slug
       }
@@ -55,7 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
   data.posts.edges.forEach(({ node }) => {
     createPage({
       path: `blog/${node.slug}`,
-      component: path.resolve("./src/templates/blog-template.js"),
+      component: path.resolve("./src/templates/blog-template.tsx"),
       context: {
         slug: node.slug,
       },

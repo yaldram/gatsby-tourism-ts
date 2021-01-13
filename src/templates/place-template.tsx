@@ -1,25 +1,41 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { FaMoneyBillWave, FaClock, FaTypo3 } from "react-icons/fa"
+import Image from "gatsby-image"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
 import styles from "./template.module.css"
 
-const Template = ({ data: { contentfulGatsbyTourism } }) => {
+interface IPlaceTemplateProps {
+  data: GatsbyTypes.getPlaceQuery
+}
+
+export default function ({ data: { place} }: IPlaceTemplateProps) {
+  
+  if (!place) {
+    throw new Error("Place not found for Place Template")
+  }
+  
   const {
     name,
-    slug,
     timeRequired,
     timings,
     entryFees,
-    description: { description },
+    description,
     images,
-  } = contentfulGatsbyTourism
+  } = place
+
+  if (!images) {
+    throw new Error("No Images found for Place Template")
+  }
 
   const [mainImage, ...placeImages] = images
+
+  if (!mainImage?.fluid) {
+    throw new Error("Image Not Found for Photo Template")
+  }
 
   return (
     <Layout>
@@ -29,8 +45,8 @@ const Template = ({ data: { contentfulGatsbyTourism } }) => {
           <div className={styles.images}>
             {placeImages &&
               placeImages.map((item, index) => {
-                return (
-                  <Img
+                return item?.fluid && (
+                  <Image
                     key={index}
                     fluid={item.fluid}
                     alt="single"
@@ -57,7 +73,7 @@ const Template = ({ data: { contentfulGatsbyTourism } }) => {
                 <></>
               )}
           </div>
-          <p className={styles.desc}>{description}</p>
+          <p className={styles.desc}>{description?.description}</p>
           <AniLink fade to="/places" className="btn-primary">
             back to places
           </AniLink>
@@ -68,10 +84,9 @@ const Template = ({ data: { contentfulGatsbyTourism } }) => {
 }
 
 export const query = graphql`
-  query($slug: String!) {
-    contentfulGatsbyTourism(slug: { eq: $slug }) {
+  query getPlace($slug: String!) {
+    place: contentfulGatsbyTourism(slug: { eq: $slug }) {
       name
-      slug
       timeRequired
       timings
       entryFees
@@ -80,11 +95,9 @@ export const query = graphql`
       }
       images {
         fluid {
-          src
+          ...GatsbyContentfulFluid
         }
       }
     }
   }
 `
-
-export default Template

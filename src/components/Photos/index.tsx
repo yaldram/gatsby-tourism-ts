@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { FluidObject } from "gatsby-image"
 
 import { Title } from "../Title"
 import { PhotoCard } from "./PhotoCard"
@@ -8,7 +7,7 @@ import { PhotoCard } from "./PhotoCard"
 import styles from "../items.module.css"
 
 const getPhotos = graphql`
-  query {
+  query allPhotos {
     photos: allContentfulPhotos {
       edges {
         node {
@@ -29,25 +28,8 @@ const getPhotos = graphql`
   }
 `
 
-type Photos = {
-  photos: {
-    edges: Array<{
-      node: {
-        id: string;
-        name: string;
-        slug: string;
-        description: { description: string };
-        images: Array<{
-          fluid: FluidObject[] | FluidObject
-        }>
-
-      }
-    }>
-  }
-}
-
 export const PhotoList = () => {
-  const { photos } = useStaticQuery<Photos>(getPhotos);
+  const { photos } = useStaticQuery<GatsbyTypes.allPhotosQuery>(getPhotos);
 
   return (
     <section className={styles.tours}>
@@ -62,6 +44,4 @@ export const PhotoList = () => {
       </div>
     </section>
   )
-
-
 }

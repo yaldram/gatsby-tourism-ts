@@ -1,13 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { IFluidObject } from "gatsby-background-image"
 
 import { Layout } from "../components/Layout";
 import { StyledHeroComponent } from "../components/Headers";
 import { PhotoList } from "../components/Photos";
 
 export const query = graphql`
-  query {
+  query photosImage {
     defaultBcg: file(relativePath: { eq: "defaultBcg.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 4160) {
@@ -18,20 +17,15 @@ export const query = graphql`
   }
 `;
 
-interface IPhototsProps {
-  data: {
-    defaultBcg: {
-      childImageSharp: {
-        fluid: IFluidObject | IFluidObject[] | (string | IFluidObject)[]
-      }
-    }
-  }
-}
+export default function ({ data: { defaultBcg } }: { data: GatsbyTypes.photosImageQuery }) {
 
-export default function ({ data }: IPhototsProps) {
+  if (!defaultBcg?.childImageSharp?.fluid) {
+    throw new Error("Image not found under pages/photos.tsx")
+  }
+
   return (
     <Layout>
-      <StyledHeroComponent img={data.defaultBcg.childImageSharp.fluid} />
+      <StyledHeroComponent img={defaultBcg.childImageSharp.fluid} />
       <PhotoList />
     </Layout>
   )

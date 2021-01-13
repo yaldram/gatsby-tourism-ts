@@ -1,22 +1,26 @@
 import React from "react"
-import Image, { FluidObject } from "gatsby-image"
+import Image from "gatsby-image"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 import styles from "./places.module.css"
 
 interface IPlaceProps {
-  place: {
-    name: string;
-    slug: string;
-    images: Array<{
-      fluid: FluidObject[] | FluidObject
-    }>
-  }
+  readonly place: GatsbyTypes.allPlacesQuery["places"]["edges"][number]["node"]
 }
+
 
 export function Place({ place }: IPlaceProps) {
   const { name, slug, images } = place
+
+  if (!images) {
+    return null;
+  }
+
   const [mainImage] = images
+
+  if (!mainImage || !mainImage?.fluid) {
+    return null;
+  }
 
   return (
     <article className={styles.place}>

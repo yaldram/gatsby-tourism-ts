@@ -5,12 +5,21 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/Layout"
 import styles from "./single-blog.module.css"
 
-const Blog = ({ data }) => {
+interface IBlogTemplateProps {
+  data: GatsbyTypes.getPostQuery
+}
+
+export default function ({ data: { post }  }: IBlogTemplateProps) {
+
+  if (!post) {
+    throw new Error("Post not found for Blog Template")
+  }
+
   const {
     title,
     published,
-    description: { childMarkdownRemark },
-  } = data.post
+    description
+  } = post
 
   return (
     <Layout>
@@ -18,7 +27,7 @@ const Blog = ({ data }) => {
         <div className={styles.center}>
           <h1>{title}</h1>
           <h4>Published at : {published}</h4>
-          <div dangerouslySetInnerHTML={{ __html: childMarkdownRemark.html }} />
+          <div dangerouslySetInnerHTML={{ __html: description?.childMarkdownRemark?.html || "" }} />
           <AniLink fade to="/blog" className="btn-primary">
             All Blogs
           </AniLink>
@@ -28,7 +37,6 @@ const Blog = ({ data }) => {
   )
 }
 
-export default Blog
 
 export const query = graphql`
   query getPost($slug: String!) {

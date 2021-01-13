@@ -4,10 +4,9 @@ import { graphql, useStaticQuery } from "gatsby"
 import styles from "../items.module.css"
 import { Title } from "../Title"
 import { Place } from "./Place"
-import { FluidObject } from "gatsby-image"
 
 const getPlaces = graphql`
-  query {
+  query allPlaces {
     places: allContentfulGatsbyTourism {
       edges {
         node {
@@ -25,25 +24,9 @@ const getPlaces = graphql`
   }
 `
 
-type Places = {
-  places: {
-    edges: Array<{
-      node: {
-        contentful_id: string;
-        name: string;
-        slug: string;
-        images: Array<{
-          fluid: FluidObject[] | FluidObject
-        }>
-      }
-    }>
-  }
-}
 
 export function Places() {
-  const { places } = useStaticQuery<Places>(getPlaces)
-
-  if (!places) return null;
+  const { places } = useStaticQuery<GatsbyTypes.allPlacesQuery>(getPlaces)
 
   return (
     <section className={styles.tours}>
