@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
 import { BlogList } from "../components/Blog"
+import { SEO } from "../components/SEO"
 
 export const query = graphql`
   query blogImage {
@@ -25,6 +26,7 @@ export default function Blog({ data: { blogBcg } }: { data: GatsbyTypes.blogImag
 
   return (
     <Layout>
+      <SEO title="Blog" description="Real experiences blogs on Hampi, the city of ruins, is a UNESCO World Heritage Site." />
       <StyledHeroComponent img={blogBcg.childImageSharp.fluid} />
       <BlogList />
     </Layout>

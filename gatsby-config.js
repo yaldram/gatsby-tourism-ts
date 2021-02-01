@@ -3,6 +3,14 @@ require("dotenv").config({
 })
 
 module.exports = {
+  siteMetadata: {
+    title: "HampiToursim",
+    description: "Information, blog posts and photos of Hampi, the city of ruins, is a UNESCO World Heritage Site.",
+    author: "Arsalan Ahmed Yaldram",
+    twitterUsername: "@ArsalanYaldram",
+    image: '/VirupakshaTemple20.jpg',
+    siteUrl: 'https://amazinghampi.com'
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
@@ -35,6 +43,7 @@ module.exports = {
     `gatsby-plugin-transition-link`,
     `gatsby-background-image`,
     `gatsby-transformer-remark`,
+    `gatsby-plugin-react-helmet`
   ],
 }
 

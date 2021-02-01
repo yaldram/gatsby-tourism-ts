@@ -5114,6 +5114,10 @@ enum SiteFieldsEnum {
   buildTime = 'buildTime',
   siteMetadata___title = 'siteMetadata.title',
   siteMetadata___description = 'siteMetadata.description',
+  siteMetadata___author = 'siteMetadata.author',
+  siteMetadata___twitterUsername = 'siteMetadata.twitterUsername',
+  siteMetadata___image = 'siteMetadata.image',
+  siteMetadata___siteUrl = 'siteMetadata.siteUrl',
   port = 'port',
   host = 'host',
   polyfill = 'polyfill',
@@ -5828,11 +5832,19 @@ type SitePluginSortInput = {
 type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly author: Maybe<Scalars['String']>;
+  readonly twitterUsername: Maybe<Scalars['String']>;
+  readonly image: Maybe<Scalars['String']>;
+  readonly siteUrl: Maybe<Scalars['String']>;
 };
 
 type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
+  readonly author: Maybe<StringQueryOperatorInput>;
+  readonly twitterUsername: Maybe<StringQueryOperatorInput>;
+  readonly image: Maybe<StringQueryOperatorInput>;
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteSortInput = {
@@ -5883,13 +5895,8 @@ type getPostQueryVariables = Exact<{
 
 type getPostQuery = { readonly post: Maybe<(
     Pick<ContentfulPost, 'title' | 'published'>
-    & { readonly description: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> }> }
+    & { readonly description: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html' | 'excerpt'>> }> }
   )> };
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
@@ -5918,6 +5925,11 @@ type placesImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type placesImageQuery = { readonly defaultBcg: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }> };
 
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
 type allPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5927,11 +5939,6 @@ type allPostsQuery = { readonly posts: { readonly edges: ReadonlyArray<{ readonl
         & { readonly image: Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }> }
       ) }> } };
 
-type aboutImageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type aboutImageQuery = { readonly aboutImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
-
 type featuredPlacesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5939,6 +5946,11 @@ type featuredPlacesQuery = { readonly featuredPlaces: { readonly edges: Readonly
         Pick<ContentfulGatsbyTourism, 'contentful_id' | 'name' | 'slug' | 'timeRequired' | 'timings' | 'entryFees' | 'featured'>
         & { readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
       ) }> } };
+
+type aboutImageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type aboutImageQuery = { readonly aboutImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
 type allPhotosQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5948,6 +5960,14 @@ type allPhotosQuery = { readonly photos: { readonly edges: ReadonlyArray<{ reado
         & { id: ContentfulPhotos['contentful_id'] }
         & { readonly description: Maybe<Pick<contentfulPhotosDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
       ) }> } };
+
+type allSitedataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type allSitedataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'author' | 'siteUrl' | 'image' | 'twitterUsername'>
+      & { siteTitle: SiteSiteMetadata['title'], siteDesc: SiteSiteMetadata['description'] }
+    )> }> };
 
 type allPlacesQueryVariables = Exact<{ [key: string]: never; }>;
 

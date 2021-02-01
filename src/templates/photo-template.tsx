@@ -1,16 +1,17 @@
 import React from "react"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Image from "gatsby-image"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import { Layout } from "../components/Layout"
 import styles from "./single-blog.module.css"
+import { SEO } from "../components/SEO"
 
-interface IPhotoTemplateProps {
+interface IPhotoTemplateProps extends PageProps {
   data: GatsbyTypes.getPhotoQuery
 }
 
-export default function ({ data: { photo } }: IPhotoTemplateProps) {
+export default function ({ location, data: { photo } }: IPhotoTemplateProps) {
 
   if (!photo) {
     throw new Error("Photo Not Found for Photo Template")
@@ -30,6 +31,7 @@ export default function ({ data: { photo } }: IPhotoTemplateProps) {
 
   return (
     <Layout>
+      <SEO title={name} description={`Royalty free image of ${name}`} pathname={location.pathname} />
       <section className={styles.blog}>
         <h1 className={styles.center}>{name}</h1>
         <div className={styles.center}>

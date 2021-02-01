@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/Layout";
 import { StyledHeroComponent } from "../components/Headers";
 import { PhotoList } from "../components/Photos";
+import { SEO } from "../components/SEO"
 
 export const query = graphql`
   query photosImage {
@@ -25,6 +26,7 @@ export default function ({ data: { defaultBcg } }: { data: GatsbyTypes.photosIma
 
   return (
     <Layout>
+      <SEO title="Photos" description="Royalty free image of Hampi, the city of ruins, is a UNESCO World Heritage Site." />
       <StyledHeroComponent img={defaultBcg.childImageSharp.fluid} />
       <PhotoList />
     </Layout>

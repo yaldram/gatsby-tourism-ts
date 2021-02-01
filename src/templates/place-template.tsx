@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import { FaMoneyBillWave, FaClock, FaTypo3 } from "react-icons/fa"
 import Image from "gatsby-image"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
@@ -7,17 +7,18 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
 import styles from "./template.module.css"
+import { SEO } from "../components/SEO"
 
-interface IPlaceTemplateProps {
+interface IPlaceTemplateProps extends PageProps {
   data: GatsbyTypes.getPlaceQuery
 }
 
-export default function ({ data: { place} }: IPlaceTemplateProps) {
-  
+export default function ({ location, data: { place } }: IPlaceTemplateProps) {
+
   if (!place) {
     throw new Error("Place not found for Place Template")
   }
-  
+
   const {
     name,
     timeRequired,
@@ -39,6 +40,7 @@ export default function ({ data: { place} }: IPlaceTemplateProps) {
 
   return (
     <Layout>
+      <SEO title={name} pathname={location.pathname} />
       <StyledHeroComponent img={mainImage.fluid} />
       <section className={styles.template}>
         <div className={styles.center}>
@@ -65,13 +67,11 @@ export default function ({ data: { place} }: IPlaceTemplateProps) {
               <FaClock className={styles.icon} />
               Time Required - {timeRequired} hours
             </p>
-            {timings ? (
+            {timings && (
               <p>
                 <FaTypo3 className={styles.icon} /> Timings - {timings}
               </p>
-            ) : (
-                <></>
-              )}
+            )}
           </div>
           <p className={styles.desc}>{description?.description}</p>
           <AniLink fade to="/places" className="btn-primary">

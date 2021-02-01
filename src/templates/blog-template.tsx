@@ -1,28 +1,26 @@
 import React from "react"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import { Layout } from "../components/Layout"
+import { SEO } from "../components/SEO"
 import styles from "./single-blog.module.css"
 
-interface IBlogTemplateProps {
+interface IBlogTemplateProps extends PageProps {
   data: GatsbyTypes.getPostQuery
 }
 
-export default function ({ data: { post }  }: IBlogTemplateProps) {
+export default function ({ location, data: { post } }: IBlogTemplateProps) {
 
   if (!post) {
     throw new Error("Post not found for Blog Template")
   }
 
-  const {
-    title,
-    published,
-    description
-  } = post
+  const { title, published, description } = post
 
   return (
     <Layout>
+      <SEO title={title} description={description?.childMarkdownRemark?.excerpt} pathname={location.pathname} />
       <section className={styles.blog}>
         <div className={styles.center}>
           <h1>{title}</h1>
@@ -46,6 +44,7 @@ export const query = graphql`
       description {
         childMarkdownRemark {
           html
+          excerpt(pruneLength: 160)
         }
       }
     }

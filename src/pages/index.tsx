@@ -8,6 +8,7 @@ import { About } from "../components/Home/About"
 import { Tips } from "../components/Home/Tips"
 import { Banner } from "../components/Banner"
 import { FeaturedPlaces } from "../components/Home/FeaturedPlaces"
+import { SEO } from "../components/SEO"
 
 export const query = graphql`
   query homeImage {
@@ -29,6 +30,7 @@ export default function ({ data: { defaultBcg } }: { data: GatsbyTypes.homeImage
 
   return (
     <Layout>
+      <SEO title="Home" />
       <StyledHeroComponent home img={defaultBcg.childImageSharp.fluid}>
         <Banner
           title="Awesome Hampi"

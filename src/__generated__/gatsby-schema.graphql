@@ -4593,6 +4593,10 @@ enum SiteFieldsEnum {
   buildTime
   siteMetadata___title
   siteMetadata___description
+  siteMetadata___author
+  siteMetadata___twitterUsername
+  siteMetadata___image
+  siteMetadata___siteUrl
   port
   host
   polyfill
@@ -5283,11 +5287,19 @@ input SitePluginSortInput {
 type SiteSiteMetadata {
   title: String
   description: String
+  author: String
+  twitterUsername: String
+  image: String
+  siteUrl: String
 }
 
 input SiteSiteMetadataFilterInput {
   title: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  author: StringQueryOperatorInput
+  twitterUsername: StringQueryOperatorInput
+  image: StringQueryOperatorInput
+  siteUrl: StringQueryOperatorInput
 }
 
 input SiteSortInput {

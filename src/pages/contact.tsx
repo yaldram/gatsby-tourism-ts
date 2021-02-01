@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import { ContactForm } from "../components/ContactForm"
 import { Layout } from "../components/Layout"
 import { StyledHeroComponent } from "../components/Headers"
+import { SEO } from "../components/SEO"
 
 export const query = graphql`
   query contactImage {
@@ -26,6 +27,7 @@ export default function ({ data: { connectBcg } }: { data: GatsbyTypes.contactIm
 
   return (
     <Layout>
+      <SEO title="Contact" />
       <StyledHeroComponent img={connectBcg.childImageSharp.fluid} />
       <ContactForm />
     </Layout>
