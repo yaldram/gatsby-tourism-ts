@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { Layout } from "../components/Layout"
-import { StyledHeroComponent } from "../components/Headers"
-import { BlogList } from "../components/Blog"
-import { SEO } from "../components/SEO"
+import { Layout } from "../../components/Layout"
+import { StyledHeroComponent } from "../../components/Headers"
+import { BlogList } from "../../components/Blog"
+import { SEO } from "../../components/SEO"
 
 export const query = graphql`
   query blogImage {

@@ -669,6 +669,7 @@ type ContentfulGatsbyTourism = ContentfulReference & ContentfulEntry & Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulGatsbyTourismSys>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -689,6 +690,11 @@ type ContentfulGatsbyTourism_updatedAtArgs = {
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
   locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulGatsbyTourism_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type ContentfulGatsbyTourismConnection = {
@@ -1110,6 +1116,7 @@ enum ContentfulGatsbyTourismFieldsEnum {
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
+  gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -1282,6 +1289,7 @@ type ContentfulGatsbyTourismFilterInput = {
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulGatsbyTourismSysFilterInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -1367,6 +1375,7 @@ type ContentfulPhotos = ContentfulReference & ContentfulEntry & Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulPhotosSys>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -1387,6 +1396,11 @@ type ContentfulPhotos_updatedAtArgs = {
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
   locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulPhotos_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type ContentfulPhotosConnection = {
@@ -1804,6 +1818,7 @@ enum ContentfulPhotosFieldsEnum {
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
+  gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -1972,6 +1987,7 @@ type ContentfulPhotosFilterInput = {
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulPhotosSysFilterInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -2037,6 +2053,7 @@ type ContentfulPost = ContentfulReference & ContentfulEntry & Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulPostSys>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
@@ -2065,6 +2082,11 @@ type ContentfulPost_updatedAtArgs = {
   fromNow: Maybe<Scalars['Boolean']>;
   difference: Maybe<Scalars['String']>;
   locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulPost_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
 };
 
 type ContentfulPostConnection = {
@@ -2482,6 +2504,7 @@ enum ContentfulPostFieldsEnum {
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
+  gatsbyPath = 'gatsbyPath',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
   parent___parent___parent___id = 'parent.parent.parent.id',
@@ -2651,6 +2674,7 @@ type ContentfulPostFilterInput = {
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulPostSysFilterInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
@@ -4719,6 +4743,7 @@ type Query_contentfulGatsbyTourismArgs = {
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulGatsbyTourismSysFilterInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -4747,6 +4772,7 @@ type Query_contentfulPostArgs = {
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulPostSysFilterInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -4774,6 +4800,7 @@ type Query_contentfulPhotosArgs = {
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulPhotosSysFilterInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
@@ -5271,11 +5298,23 @@ type SitePageConnection_groupArgs = {
 };
 
 type SitePageContext = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly _xparams: Maybe<SitePageContext_xparams>;
+};
+
+type SitePageContext_xparams = {
   readonly slug: Maybe<Scalars['String']>;
 };
 
-type SitePageContextFilterInput = {
+type SitePageContext_xparamsFilterInput = {
   readonly slug: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
 };
 
 type SitePageEdge = {
@@ -5377,7 +5416,9 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___id = 'context.id',
   context___slug = 'context.slug',
+  context____xparams___slug = 'context._xparams.slug',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -5866,44 +5907,10 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type getPlaceQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type getPlaceQuery = { readonly place: Maybe<(
-    Pick<ContentfulGatsbyTourism, 'name' | 'timeRequired' | 'timings' | 'entryFees'>
-    & { readonly description: Maybe<Pick<contentfulGatsbyTourismDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
-  )> };
-
-type getPhotoQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
-
-
-type getPhotoQuery = { readonly photo: Maybe<(
-    Pick<ContentfulPhotos, 'name'>
-    & { readonly description: Maybe<Pick<contentfulPhotosDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
-  )> };
-
-type getPostQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
-
-
-type getPostQuery = { readonly post: Maybe<(
-    Pick<ContentfulPost, 'title' | 'published'>
-    & { readonly description: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html' | 'excerpt'>> }> }
-  )> };
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type blogImageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type blogImageQuery = { readonly blogBcg: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }> };
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 type contactImageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5915,6 +5922,11 @@ type homeImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type homeImageQuery = { readonly defaultBcg: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }> };
 
+type blogImageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type blogImageQuery = { readonly blogBcg: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }> };
+
 type photosImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5925,10 +5937,35 @@ type placesImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type placesImageQuery = { readonly defaultBcg: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }> };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type getPostQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
 
 
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type getPostQuery = { readonly post: Maybe<(
+    Pick<ContentfulPost, 'title' | 'published'>
+    & { readonly description: Maybe<{ readonly childMarkdownRemark: Maybe<Pick<MarkdownRemark, 'html' | 'excerpt'>> }> }
+  )> };
+
+type getPhotoQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type getPhotoQuery = { readonly photo: Maybe<(
+    Pick<ContentfulPhotos, 'name'>
+    & { readonly description: Maybe<Pick<contentfulPhotosDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
+  )> };
+
+type getPlaceQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type getPlaceQuery = { readonly place: Maybe<(
+    Pick<ContentfulGatsbyTourism, 'name' | 'timeRequired' | 'timings' | 'entryFees'>
+    & { readonly description: Maybe<Pick<contentfulGatsbyTourismDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
+  )> };
 
 type allPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5961,14 +5998,6 @@ type allPhotosQuery = { readonly photos: { readonly edges: ReadonlyArray<{ reado
         & { readonly description: Maybe<Pick<contentfulPhotosDescriptionTextNode, 'description'>>, readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
       ) }> } };
 
-type allSitedataQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type allSitedataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'author' | 'siteUrl' | 'image' | 'twitterUsername'>
-      & { siteTitle: SiteSiteMetadata['title'], siteDesc: SiteSiteMetadata['description'] }
-    )> }> };
-
 type allPlacesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5976,6 +6005,14 @@ type allPlacesQuery = { readonly places: { readonly edges: ReadonlyArray<{ reado
         Pick<ContentfulGatsbyTourism, 'contentful_id' | 'name' | 'slug'>
         & { readonly images: Maybe<ReadonlyArray<Maybe<{ readonly fluid: Maybe<GatsbyContentfulFluidFragment> }>>> }
       ) }> } };
+
+type allSitedataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type allSitedataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'author' | 'siteUrl' | 'image' | 'twitterUsername'>
+      & { siteTitle: SiteSiteMetadata['title'], siteDesc: SiteSiteMetadata['description'] }
+    )> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5986,6 +6023,8 @@ type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'h
 type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
 type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
@@ -6032,6 +6071,8 @@ type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRat
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
 
 type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 

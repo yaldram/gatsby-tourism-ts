@@ -2,8 +2,9 @@ import React from "react"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { graphql, PageProps } from "gatsby"
 
-import { Layout } from "../components/Layout"
-import { SEO } from "../components/SEO"
+import { Layout } from "../../components/Layout"
+import { SEO } from "../../components/SEO"
+
 import styles from "./single-blog.module.css"
 
 interface IBlogTemplateProps extends PageProps {
@@ -37,8 +38,8 @@ export default function ({ location, data: { post } }: IBlogTemplateProps) {
 
 
 export const query = graphql`
-  query getPost($slug: String!) {
-    post: contentfulPost(slug: { eq: $slug }) {
+  query getPost($id: String!) {
+    post: contentfulPost(id: { eq: $id }) {
       title
       published(formatString: "MMMM Do, YYYY")
       description {

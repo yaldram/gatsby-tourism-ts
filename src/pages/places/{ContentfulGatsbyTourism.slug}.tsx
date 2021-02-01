@@ -4,10 +4,11 @@ import { FaMoneyBillWave, FaClock, FaTypo3 } from "react-icons/fa"
 import Image from "gatsby-image"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-import { Layout } from "../components/Layout"
-import { StyledHeroComponent } from "../components/Headers"
-import styles from "./template.module.css"
-import { SEO } from "../components/SEO"
+import { Layout } from "../../components/Layout"
+import { StyledHeroComponent } from "../../components/Headers"
+import { SEO } from "../../components/SEO"
+
+import styles from "./single-place.module.css"
 
 interface IPlaceTemplateProps extends PageProps {
   data: GatsbyTypes.getPlaceQuery
@@ -84,8 +85,8 @@ export default function ({ location, data: { place } }: IPlaceTemplateProps) {
 }
 
 export const query = graphql`
-  query getPlace($slug: String!) {
-    place: contentfulGatsbyTourism(slug: { eq: $slug }) {
+  query getPlace($id: String!) {
+    place: contentfulGatsbyTourism(id: { eq: $id }) {
       name
       timeRequired
       timings

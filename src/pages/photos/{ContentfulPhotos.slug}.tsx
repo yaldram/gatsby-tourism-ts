@@ -3,9 +3,10 @@ import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Image from "gatsby-image"
 import { graphql, PageProps } from "gatsby"
 
-import { Layout } from "../components/Layout"
-import styles from "./single-blog.module.css"
-import { SEO } from "../components/SEO"
+import { Layout } from "../../components/Layout"
+import { SEO } from "../../components/SEO"
+
+import styles from "./single-photo.module.css"
 
 interface IPhotoTemplateProps extends PageProps {
   data: GatsbyTypes.getPhotoQuery
@@ -48,8 +49,8 @@ export default function ({ location, data: { photo } }: IPhotoTemplateProps) {
 }
 
 export const query = graphql`
-  query getPhoto($slug: String!) {
-    photo: contentfulPhotos(slug: { eq: $slug }) {
+  query getPhoto($id: String!) {
+    photo: contentfulPhotos(id: { eq: $id }) {
       name
       description {
         description

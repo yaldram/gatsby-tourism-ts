@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import { Places } from "../components/Places"
-import { Layout } from "../components/Layout"
-import { StyledHeroComponent } from "../components/Headers"
-import { SEO } from "../components/SEO"
+import { Places } from "../../components/Places"
+import { Layout } from "../../components/Layout"
+import { StyledHeroComponent } from "../../components/Headers"
+import { SEO } from "../../components/SEO"
 
 export const query = graphql`
   query placesImage {
@@ -32,3 +32,5 @@ export default function PlacesPage({ data: { defaultBcg } }: { data: GatsbyTypes
     </Layout>
   )
 }
+
+
